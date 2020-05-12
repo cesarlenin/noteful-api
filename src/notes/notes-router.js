@@ -10,7 +10,7 @@ const bodyParser = express.json();
 
 const serializeNote = note => ({
   id: note.id,
-  note_title: note.title,
+  note_title: note.note_title,
   modified: note.modified,
   folder_id: note.folder_id,
   content: note.content
