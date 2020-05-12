@@ -11,7 +11,7 @@ const bodyParser = express.json();
 
 const serializeFolder = folder => ({
   id: folder.id,
-  title: folder.title
+  name: folder.name
 });
 
 foldersRouter
@@ -22,16 +22,16 @@ foldersRouter
   })
   .post(bodyParser, (req, res, next) => {
     const { 
-      title
+      name
     } = req.body;
 
     const newFolder = { 
-      title
+      name
     };
 
-    if (!title) {
-      logger.error('title is required');
-      return res.status(400).send('title is required');
+    if (!name) {
+      logger.error('name is required');
+      return res.status(400).send('name is required');
     }
 
     foldersServices.insertFolder(req.app.get('db'),newFolder)
@@ -79,18 +79,18 @@ foldersRouter
 
   .patch(bodyParser, (req, res, next) => {
     const { 
-      title
+      name
     } = req.body;
 
     const newFolder = { 
-      title
+      name
     };
 
     const numberOfValues = Object.values(newFolder).filter(Boolean).length;
     if (numberOfValues === 0)
       return res.status(400).json({
         error: {
-          message: 'Request body must content \'title\''
+          message: 'Request body must content \'name\''
         }
       });
 

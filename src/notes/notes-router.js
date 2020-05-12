@@ -10,9 +10,9 @@ const bodyParser = express.json();
 
 const serializeNote = note => ({
   id: note.id,
-  note_title: note.note_title,
+  name: note.name,
   modified: note.modified,
-  folder_id: note.folder_id,
+  folderId: note.folderid,
   content: note.content
 });
 
@@ -24,24 +24,24 @@ notesRouter
   })
   .post(bodyParser, (req, res, next) => {
     const { 
-      note_title,
-      folder_id,
+      name,
+      folderId,
       content,
       modified
     } = req.body;
 
     const newNote = { 
-      note_title,
-      folder_id,
+      name,
+      folderid: folderId,
       content,
       modified
     };
 
-    if (!note_title) {
-      logger.error('title is required');
-      return res.status(400).send('title is required');
+    if (!name) {
+      logger.error('name is required');
+      return res.status(400).send('name is required');
     }
-    if (!folder_id || !Number.isInteger(Number(folder_id))) {
+    if (!folderId || !Number.isInteger(Number(folderId))) {
       logger.error('folder id needs to be a number');
       return res.status(400).send('folder id needs to be a number');
     } 
@@ -100,15 +100,15 @@ notesRouter
   //here
   .patch(bodyParser, (req, res, next) => {
     const { 
-      note_title,
-      folder_id,
+      name,
+      folderId,
       content,
       modified
     } = req.body;
   
     const newNote = { 
-      note_title,
-      folder_id,
+      name,
+      folderid: folderId,
       content,
       modified
     };
@@ -117,7 +117,7 @@ notesRouter
     if (numberOfValues === 0)
       return res.status(400).json({
         error: {
-          message: 'Request body must content either \'title\', \'folder id\', \'modified\' or \'content\''
+          message: 'Request body must content either \'name\', \'folder id\', \'modified\' or \'content\''
         }
       });
 

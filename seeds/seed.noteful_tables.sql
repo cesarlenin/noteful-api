@@ -5,13 +5,13 @@ TRUNCATE
   noteful_notes
   RESTART IDENTITY CASCADE;
 
-INSERT INTO noteful_folders (title)
+INSERT INTO noteful_folders (name)
 VALUES
   ('cesar'),
   ('lenin'),
   ('morales');
 
-INSERT INTO noteful_notes (note_title, content, folder_id)
+INSERT INTO noteful_notes (name, content, folderId)
 VALUES
   ('First post!',
     'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus consequuntur deserunt commodi, nobis qui inventore corrupti iusto aliquid debitis unde non. Adipisci, pariatur. Molestiae, libero esse hic adipisci autem neque?',
