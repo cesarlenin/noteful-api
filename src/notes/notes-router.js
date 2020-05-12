@@ -27,13 +27,14 @@ notesRouter
       note_title,
       folder_id,
       content,
+      modified
     } = req.body;
 
     const newNote = { 
       note_title,
       folder_id,
       content,
-      modified:new Date()
+      modified
     };
 
     if (!note_title) {
@@ -47,6 +48,10 @@ notesRouter
     if (!content) {
       logger.error('content id is required');
       return res.status(400).send('content id is required');
+    }
+    if (!modified) {
+      logger.error('modified id is required');
+      return res.status(400).send('modified id is required');
     }
 
     notesServices.insertNote(req.app.get('db'),newNote)
