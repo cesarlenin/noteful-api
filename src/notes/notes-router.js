@@ -11,7 +11,7 @@ const bodyParser = express.json();
 const serializeNote = note => ({
   id: note.id,
   note_title: note.title,
-  modified: new Date(note.modified),
+  modified: note.modified,
   folder_id: note.folder_id,
   content: note.content
 });
@@ -26,13 +26,14 @@ notesRouter
     const { 
       note_title,
       folder_id,
-      content
+      content,
     } = req.body;
 
     const newNote = { 
       note_title,
       folder_id,
-      content
+      content,
+      modified:new Date()
     };
 
     if (!note_title) {
@@ -96,20 +97,22 @@ notesRouter
     const { 
       note_title,
       folder_id,
-      content
+      content,
+      modified
     } = req.body;
   
     const newNote = { 
       note_title,
       folder_id,
-      content
+      content,
+      modified
     };
 
     const numberOfValues = Object.values(newNote).filter(Boolean).length;
     if (numberOfValues === 0)
       return res.status(400).json({
         error: {
-          message: 'Request body must content either \'title\', \'folder id\' or \'content\''
+          message: 'Request body must content either \'title\', \'folder id\', \'modified\' or \'content\''
         }
       });
 
