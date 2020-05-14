@@ -1,4 +1,3 @@
-BEGIN;
 
 TRUNCATE
   noteful_folders,
@@ -32,6 +31,5 @@ VALUES
     'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus consequuntur deserunt commodi, nobis qui inventore corrupti iusto aliquid debitis unde non. Adipisci, pariatur. Molestiae, libero esse hic adipisci autem neque?',
     3);
 
-COMMIT;
 
 
